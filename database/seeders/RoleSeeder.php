@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoleSeeder extends Seeder
 {
@@ -12,6 +13,23 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $roles = [
+            [
+                'id' => 1,
+                'name' => 'reader'
+            ],
+            [
+                'id' => 2,
+                'name' => 'writer'
+            ],
+            [
+                'id' => 3,
+                'name' => 'admin'
+            ]
+        ];
+
+        foreach ($roles as $role) {
+            Role::create($role);
+        }
     }
 }

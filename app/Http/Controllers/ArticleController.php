@@ -108,7 +108,7 @@ class ArticleController extends Controller
         $article->delete();
         return request()->expectsJson()
             ? response()->json(['message' => 'Artikel dihapus'])
-            : redirect()->route('articles.index')->with('success', 'Artikel dihapus.');
+            : redirect()->route('author.index')->with('success', 'Artikel dihapus.');
     }
 
     protected function authorizeArticle(Article $article)
