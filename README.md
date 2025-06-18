@@ -1,61 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Readify
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Deskripsi Aplikasi
 
-## About Laravel
+**Readify** adalah aplikasi web berbasis **Laravel 12** untuk mengelola artikel secara efisien. Aplikasi ini memungkinkan pengguna dengan peran berbeda untuk berinteraksi dengan konten:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Writer**: Membuat, mengedit, dan menghapus artikel.
+- **Reader**: Membaca artikel dan memberikan komentar.
+- **Admin**: Mengelola artikel, kategori, pengguna, dan komentar.
+- **Guest**: Mengakses artikel tanpa autentikasi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Readify menawarkan antarmuka responsif dengan **Tailwind CSS**, autentikasi ganda (web dan API dengan JWT), serta fitur seperti pencarian artikel, upload gambar, dan hak akses berbasis peran. Aplikasi ini ideal untuk platform publikasi konten seperti blog atau situs berita, dengan dukungan API untuk integrasi eksternal.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur Utama
 
-## Learning Laravel
+- ✅ Autentikasi pengguna via web (Laravel Breeze) dan API (JWT dengan `tymon/jwt-auth`)
+- ✅ Manajemen artikel (CRUD) dengan upload gambar untuk Writer dan pengelolaan oleh Admin
+- ✅ Pencarian artikel berdasarkan judul/konten di halaman utama
+- ✅ Manajemen kategori untuk pengelompokan artikel
+- ✅ Manajemen komentar oleh pengguna terautentikasi, dengan penghapusan oleh Admin
+- ✅ Hak akses berbasis peran menggunakan middleware
+- ✅ API RESTful untuk autentikasi, artikel, kategori, dan komentar, diuji dengan Postman
+- ✅ UI responsif mendukung desktop dan mobile
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Teknologi
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Backend**: Laravel 12, PHP 8.2, Eloquent ORM  
+- **Frontend**: Blade, Tailwind CSS, Vite  
+- **Database**: SQLite / MySQL  
+- **API Auth**: [tymon/jwt-auth](https://github.com/tymondesigns/jwt-auth)  
+- **Tools**: Composer, Vite, Postman  
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Prasyarat
 
-## Laravel Sponsors
+Sebelum mengkloning dan menjalankan aplikasi, pastikan Anda memiliki:
+- PHP >= 8.2  
+- Composer  
+- Node.js >= 18.x dan npm  
+- MySQL atau SQLite  
+- Git  
+- Akses terminal/command line  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Instalasi & Menjalankan Aplikasi
 
-### Premium Partners
+Ikuti langkah-langkah berikut untuk meng-clone dan menjalankan aplikasi Readify di lokal Anda:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 1. Clone Repository
 
-## Contributing
+```bash
+git clone https://github.com/dapaalpinnn/readify.git
+cd readify
+```
+### 2. Install Dependency PHP dan Node.js
+Install dependency Laravel:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+```
 
-## Code of Conduct
+Install dependency frontend:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+npm install
+```
+### 3. Salin dan Atur File Environment
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Lalu buka .env dan sesuaikan konfigurasi seperti nama database, email, dan lain-lain sesuai kebutuhan.
 
-## License
+### 4. Generate App Key dan JWT Secret
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan key:generate
+php artisan jwt:secret
+```
+
+### 5. Migrasi dan Seed Database
+```bash
+php artisan migrate --seed
+```
+Membuat tabel dan menambahkan data awal termasuk role dan user demo.
+
+### 6. Jalankan Server Laravel
+```bash
+php artisan serve
+```
+### 7. Jalankan Frontend Dev Server (Vite)
+```bash
+npm run dev
+```
+Pastikan terminal ini tetap berjalan agar Vite mengompilasi Tailwind CSS dan JS secara real-time.
