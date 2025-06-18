@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Void_;
 use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
@@ -19,6 +20,7 @@ class RoleMiddleware
         if (Auth::check() && in_array(Auth::user()->role->name, $roles)) {
             return $next($request);
         }
-        return response()->json(['error' => 'Unauthorized'], 401);
+
+        abort(403, 'Aksi tidak diizinkan :(');
     }
 }

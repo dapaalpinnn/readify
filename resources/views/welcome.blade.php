@@ -16,7 +16,7 @@
 
       @guest
       <div class="flex justify-center items-center space-x-4 tracking-normal font-medium my-6 font-jomolhari">
-        <a href="{{ route('login') }}" class="block px-4 py-2 text-black ring-1 ring-gray-400 rounded-full">Masuk</a>
+        <a href="{{ route('login') }}" class="block px-4 py-2 text-gray-600 ring-1 ring-gray-400 rounded-full">Masuk</a>
         <a href="{{ route('register') }}" class="block px-4 py-2 text-white ring-1 rounded-full bg-black">Daftar</a>
       </div>
 
