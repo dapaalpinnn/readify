@@ -13,16 +13,19 @@ class SearchController extends Controller
         $search = trim($request->query('search', ''));
 
         $articles = Article::query()
-            ->when($search, function ($query, $search) {
-                return $query->where('title', 'LIKE', "%{$search}%")
-                    ->orWhere('content', 'LIKE', "%{$search}%");
-            })
+            ->when($search, fn($query, $search) => $query->where(
+                fn($subQuery) => $subQuery
+                    ->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('content', 'LIKE', "%{$search}%")
+            ))
             ->with(['category', 'author.user'])
+            ->orderBy('created_at', 'desc')
             ->paginate(9)
             ->appends(['search' => $search]);
 
         return view('welcome', compact('articles', 'search'));
     }
+
 
     public function dashboard(Request $request)
     {

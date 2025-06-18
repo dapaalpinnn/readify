@@ -3,19 +3,12 @@
     <div class="flex justify-between h-16">
       <div class="flex">
         <div class="shrink-0 flex items-center">
-          <a href="{{ route('welcome') }}">
+          <a href="{{ route('welcome') }}" class="flex place-items-center gap-2">
             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            <p class="font-jomolhari text-lg tracking-wide font-semibold text-gray-700">Readify</p>
           </a>
         </div>
         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-          @guest
-          <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-            {{ __('Masuk') }}
-          </x-nav-link>
-          <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
-            {{ __('Daftar') }}
-          </x-nav-link>
-          @endguest
           @auth
           <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
             {{ __('Beranda') }}
@@ -58,12 +51,12 @@
           </x-slot>
           <x-slot name="content">
             <x-dropdown-link :href="route('profile.edit')">
-              {{ __('Profile') }}
+              {{ __('Profil Saya') }}
             </x-dropdown-link>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
               <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                {{ __('Log Out') }}
+                {{ __('Keluar') }}
               </x-dropdown-link>
             </form>
           </x-slot>

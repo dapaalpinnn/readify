@@ -1,6 +1,6 @@
 <x-app-layout>
   <div class="container mx-auto px-4 py-4">
-    <div class="max-w-6xl mb-14 mx-auto tracking-tighter text-center">
+    <div class="max-w-6xl mb-8 mx-auto tracking-tighter text-center">
       @php
       $isGuest = auth()->guest();
       $heading = $isGuest ? 'Selamat Datang di Readify' : 'Mau baca apa hari ini, ' . auth()->user()->name . '?';
@@ -14,7 +14,14 @@
         {{ $subtext }}
       </p>
 
-      <form method="GET" action="{{ route('welcome') }}" id="search-form" class="flex justify-center tracking-normal">
+      @guest
+      <div class="flex justify-center items-center space-x-4 tracking-normal font-medium my-6 font-jomolhari">
+        <a href="{{ route('login') }}" class="block px-4 py-2 text-black ring-1 ring-gray-400 rounded-full">Masuk</a>
+        <a href="{{ route('register') }}" class="block px-4 py-2 text-white ring-1 rounded-full bg-black">Daftar</a>
+      </div>
+
+      @endguest
+      <form method="GET" action="{{ route('welcome') }}" id="search-form" class="flex justify-center tracking-normal mt-10">
         <input type="text" name="search" id="search-input" value="{{ request()->query('search') }}"
           placeholder="Cari artikel berdasarkan judul atau konten..."
           class="w-full max-w-md px-4 py-2 rounded-l-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 font-jomolhari">
